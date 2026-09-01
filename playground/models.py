@@ -5,14 +5,13 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-# ===========================================
+# ==========================================
 # Student Profile Model
-# ===========================================
+# ==========================================
 
 class StudentProfile(models.Model):
 
     # Connect one StudentProfile to one User
-    # If the user is deleted, the profile is deleted too.
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE
@@ -37,18 +36,17 @@ class StudentProfile(models.Model):
         max_length=20
     )
 
-    # Return this text in the Admin Panel
     def __str__(self):
-
         return self.user.username
-    
-    # ==========================================
+
+
+# ==========================================
 # Course Model
 # ==========================================
 
 class Course(models.Model):
 
-    # Course Code (Example: CSE3201)
+    # Course Code
     course_code = models.CharField(
         max_length=20,
         unique=True
@@ -73,11 +71,11 @@ class Course(models.Model):
     # Course Description
     description = models.TextField()
 
-    # Display in Admin Panel
     def __str__(self):
         return f"{self.course_code} - {self.course_name}"
-    
-    # ==========================================
+
+
+# ==========================================
 # Enrollment Model
 # ==========================================
 
@@ -101,14 +99,12 @@ class Enrollment(models.Model):
     )
 
     class Meta:
-
-        # Prevent duplicate enrollments
         unique_together = ("student", "course")
 
     def __str__(self):
-
         return f"{self.student.username} - {self.course.course_name}"
-    
+
+
 # ==========================================
 # Learning Material Model
 # ==========================================
@@ -131,7 +127,7 @@ class LearningMaterial(models.Model):
         max_length=50
     )
 
-    # Upload actual file
+    # Uploaded file
     file = models.FileField(
         upload_to="course_materials/"
     )
@@ -143,7 +139,7 @@ class LearningMaterial(models.Model):
 
     def __str__(self):
         return self.title
-    
+
 
 # ==========================================
 # Assignment Model

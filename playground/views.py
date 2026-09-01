@@ -293,3 +293,33 @@ def logout_view(request):
     messages.success(request, "Logged out successfully!")
 
     return redirect("login")
+
+
+
+# ==========================================
+# Teacher Dashboard
+# ==========================================
+
+@login_required
+def teacher_dashboard(request):
+
+    # Only staff users can access teacher dashboard
+    if not request.user.is_staff:
+
+        messages.error(
+            request,
+            "You do not have permission to access the teacher panel."
+        )
+
+        return redirect("dashboard")
+
+    # Get all courses
+    courses = Course.objects.all()
+
+    return render(
+        request,
+        "teacher_dashboard.html",
+        {
+            "courses": courses
+        }
+    )
