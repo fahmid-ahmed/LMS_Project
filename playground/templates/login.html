@@ -1,0 +1,68 @@
+<!-- Use the common layout -->
+{% extends 'base.html' %}
+
+<!-- Browser tab title -->
+{% block title %}
+Login
+{% endblock %}
+
+<!-- Main page content -->
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <div class="card shadow">
+
+            <!-- Card Heading -->
+            <div class="card-header text-center">
+                <h3>Student Login</h3>
+            </div>
+
+            <div class="card-body">
+
+                <!-- Login Form -->
+                <form method="POST">
+
+                    <!-- Security token -->
+                    {% csrf_token %}
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            class="form-control"
+                            placeholder="Enter your username">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+
+                        <input
+                            type="password"
+                            name="password"
+                            class="form-control"
+                            placeholder="Enter your password">
+                    </div>
+
+                    <!-- Login Button -->
+                    <button type="submit" class="btn btn-primary w-100">
+                        Login
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

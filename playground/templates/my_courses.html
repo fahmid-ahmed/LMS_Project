@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %}
+My Courses
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="text-center mb-5">
+
+        <h1>My Enrolled Courses</h1>
+
+        <p class="lead">
+            These are the courses you have enrolled in.
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        {% for enrollment in enrollments %}
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body">
+
+                    <h4>
+                        {{ enrollment.course.course_name }}
+                    </h4>
+
+                    <hr>
+
+                    <p>
+                        <strong>Course Code:</strong>
+                        {{ enrollment.course.course_code }}
+                    </p>
+
+                    <p>
+                        <strong>Instructor:</strong>
+                        {{ enrollment.course.instructor }}
+                    </p>
+
+                    <p>
+                        <strong>Credit:</strong>
+                        {{ enrollment.course.credit }}
+                    </p>
+
+                    <p>
+                        <strong>Semester:</strong>
+                        {{ enrollment.course.semester }}
+                    </p>
+
+                    <p>
+                        {{ enrollment.course.description }}
+                    </p>
+
+                    <div class="d-grid">
+
+                        <a href="{% url 'course_detail' enrollment.course.id %}"
+                            class="btn btn-success">
+
+                            Open Course
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="alert alert-warning">
+
+                You have not enrolled in any courses yet.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

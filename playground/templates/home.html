@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+<!-- Browser tab title -->
+{% block title %}
+Home
+{% endblock %}
+
+<!-- Main content -->
+{% block content %}
+
+<div class="text-center">
+
+    <h1>Learning Management System</h1>
+
+    <p class="lead">
+        Welcome to the Online Learning Management System.
+    </p>
+
+    <!-- Login Button -->
+    <a href="{% url 'login' %}" class="btn btn-primary">
+        Login
+    </a>
+
+    <!-- Register Button -->
+    <a href="{% url 'register' %}" class="btn btn-success">
+        Register
+    </a>
+
+</div>
+
+{% endblock %}

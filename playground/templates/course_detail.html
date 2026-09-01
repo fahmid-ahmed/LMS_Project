@@ -1,0 +1,177 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ course.course_name }}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- ================= Course Header ================= -->
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+
+            <h2 class="text-primary">
+                {{ course.course_name }}
+            </h2>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <p>
+                        <strong>Course Code:</strong>
+                        {{ course.course_code }}
+                    </p>
+
+                    <p>
+                        <strong>Instructor:</strong>
+                        {{ course.instructor }}
+                    </p>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <p>
+                        <strong>Credit:</strong>
+                        {{ course.credit }}
+                    </p>
+
+                    <p>
+                        <strong>Semester:</strong>
+                        {{ course.semester }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h5>Description</h5>
+
+            <p>
+                {{ course.description }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= Learning Materials ================= -->
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h4 class="mb-0">
+                📚 Learning Materials
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if materials %}
+
+                <table class="table table-bordered table-hover">
+
+                    <thead class="table-light">
+
+                        <tr>
+
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>File</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for material in materials %}
+
+                        <tr>
+
+                            <td>
+                                {{ material.title }}
+                            </td>
+
+                            <td>
+                                {{ material.material_type }}
+                            </td>
+
+                            <td>
+
+                                {% if material.file %}
+
+                                    <a href="{{ material.file.url }}"
+                                       target="_blank"
+                                       class="btn btn-primary btn-sm">
+
+                                        Open File
+
+                                    </a>
+
+                                {% else %}
+
+                                    <span class="badge bg-danger">
+                                        No File Uploaded
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            {% else %}
+
+                <div class="alert alert-warning">
+
+                    No learning materials uploaded yet.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+    <!-- ================= Buttons ================= -->
+
+    <div class="mt-4 d-flex gap-2">
+
+        <a href="{% url 'assignments' course.id %}"
+           class="btn btn-warning">
+
+            📝 View Assignments
+
+        </a>
+
+        <a href="{% url 'my_courses' %}"
+           class="btn btn-secondary">
+
+            ← Back to My Courses
+
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

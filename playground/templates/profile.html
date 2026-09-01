@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+<!-- Browser Title -->
+{% block title %}
+Student Profile
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <!-- Center the profile card -->
+    <div class="col-lg-8">
+
+        <!-- Profile Card -->
+        <div class="card shadow">
+
+            <!-- Card Header -->
+            <div class="card-header bg-primary text-white">
+
+                <h3 class="mb-0">
+                    Student Profile
+                </h3>
+
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+                <!-- Profile Form -->
+                <form method="POST">
+
+                    <!-- Django Security Token -->
+                    {% csrf_token %}
+
+                    <!-- ========================= -->
+                    <!-- Full Name -->
+                    <!-- ========================= -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Full Name
+                        </label>
+
+                        <!-- Show logged-in user's name -->
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ user.first_name }}"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- Email -->
+                    <!-- ========================= -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            class="form-control"
+                            value="{{ user.email }}"
+                            readonly>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- Student ID -->
+                    <!-- ========================= -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Student ID
+                        </label>
+
+                        <input
+                            type="text"
+                            name="student_id"
+                            class="form-control"
+                            placeholder="Enter Student ID"
+                            value="{{ profile.student_id|default:'' }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- Department -->
+                    <!-- ========================= -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Department
+                        </label>
+
+                        <input
+                            type="text"
+                            name="department"
+                            class="form-control"
+                            placeholder="Enter Department"
+                            value="{{ profile.department|default:'' }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- Semester -->
+                    <!-- ========================= -->
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Semester
+                        </label>
+
+                        <input
+                            type="number"
+                            name="semester"
+                            class="form-control"
+                            placeholder="Enter Semester"
+                            value="{{ profile.semester|default:'' }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- ========================= -->
+                    <!-- Phone -->
+                    <!-- ========================= -->
+                    <div class="mb-4">
+
+                        <label class="form-label">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="text"
+                            name="phone"
+                            class="form-control"
+                            placeholder="Enter Phone Number"
+                            value="{{ profile.phone|default:'' }}"
+                            required>
+
+                    </div>
+
+
+                    <!-- Save Button -->
+                    <button
+                        type="submit"
+                        class="btn btn-success w-100">
+
+                        Save Profile
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

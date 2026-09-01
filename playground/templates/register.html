@@ -1,0 +1,88 @@
+<!-- This page uses the layout from base.html -->
+{% extends 'base.html' %}
+
+<!-- Change the browser tab title -->
+{% block title %}
+Register
+{% endblock %}
+
+<!-- Everything inside this block appears in base.html -->
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <!-- Bootstrap grid (6 columns wide) -->
+    <div class="col-md-6">
+
+        <!-- Bootstrap Card -->
+        <div class="card shadow">
+
+            <!-- Card Header -->
+            <div class="card-header text-center">
+                <h3>Student Registration</h3>
+            </div>
+
+            <!-- Card Body -->
+            <div class="card-body">
+
+                <!-- Registration Form -->
+                <!-- Send data using POST -->
+            <form method="POST">
+
+                 <!-- Security token required by Django -->
+                {% csrf_token %}
+
+                    
+
+                    <!-- Full Name -->
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text"
+                               name="full_name"
+                               class="form-control"
+                               placeholder="Enter your full name">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email"
+                               name="email"
+                               class="form-control"
+                               placeholder="Enter your email">
+                    </div>
+
+                    <!-- Username -->
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text"
+                               name="username"
+                               class="form-control"
+                               placeholder="Choose a username">
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password"
+                               name="password"
+                               class="form-control"
+                               placeholder="Create a password">
+                    </div>
+
+                    <!-- Register Button -->
+                    <button class="btn btn-success w-100">
+                        Register
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- ================= Welcome Section ================= -->
+    <div class="p-5 mb-4 bg-primary text-white rounded shadow">
+
+        <h1>
+            Welcome, {{ user.first_name }}
+        </h1>
+
+        <p class="lead">
+            This is your Learning Management System Dashboard.
+        </p>
+
+        <hr>
+
+        <!-- Check whether the student profile exists -->
+        {% if profile %}
+
+        <div class="row">
+
+            <!-- Left Column -->
+            <div class="col-md-6">
+
+                <p>
+                    <strong>Student ID:</strong>
+                    {{ profile.student_id }}
+                </p>
+
+                <p>
+                    <strong>Department:</strong>
+                    {{ profile.department }}
+                </p>
+
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-6">
+
+                <p>
+                    <strong>Semester:</strong>
+                    {{ profile.semester }}
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    {{ profile.phone }}
+                </p>
+
+            </div>
+
+        </div>
+
+        {% else %}
+
+        <!-- If profile is not completed -->
+        <div class="alert alert-warning mt-3">
+
+            <h5>Your profile is incomplete.</h5>
+
+            <p>
+                Please complete your student profile before using the LMS.
+            </p>
+
+            <a href="{% url 'profile' %}" class="btn btn-light">
+                Complete Profile
+            </a>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- ================= Dashboard Cards ================= -->
+    <div class="row">
+
+        <!-- ================= My Courses ================= -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>📚</h2>
+
+                    <h5>Courses</h5>
+
+                    <p>
+                        Browse available courses or view your enrolled courses.
+                    </p>
+
+                    <!-- Two buttons -->
+                    <div class="d-grid gap-2">
+
+                        <!-- Browse all courses -->
+                        <a href="{% url 'courses' %}" class="btn btn-primary">
+                            Browse Courses
+                        </a>
+
+                        <!-- Show only enrolled courses -->
+                        <a href="{% url 'my_courses' %}" class="btn btn-outline-primary">
+                            My Courses
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= Assignments ================= -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>📝</h2>
+
+                    <h5>Assignments</h5>
+
+                    <p>
+                        Check your pending assignments and submissions.
+                    </p>
+
+                    <a href="#" class="btn btn-success">
+                        Open
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ================= Student Profile ================= -->
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>👤</h2>
+
+                    <h5>Profile</h5>
+
+                    <p>
+                        Update your student profile information.
+                    </p>
+
+                    <a href="{% url 'profile' %}" class="btn btn-warning">
+                        Open
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

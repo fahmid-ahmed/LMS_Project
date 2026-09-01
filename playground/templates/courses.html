@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Courses
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- Page Heading -->
+    <div class="text-center mb-5">
+
+        <h1>Available Courses</h1>
+
+        <p class="lead">
+            Browse all available courses.
+        </p>
+
+    </div>
+
+    <div class="row">
+
+        {% for course in courses %}
+
+        <div class="col-md-6 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body">
+
+                    <h4 class="card-title">
+                        {{ course.course_name }}
+                    </h4>
+
+                    <hr>
+
+                    <p>
+                        <strong>Course Code:</strong>
+                        {{ course.course_code }}
+                    </p>
+
+                    <p>
+                        <strong>Instructor:</strong>
+                        {{ course.instructor }}
+                    </p>
+
+                    <p>
+                        <strong>Credit:</strong>
+                        {{ course.credit }}
+                    </p>
+
+                    <p>
+                        <strong>Semester:</strong>
+                        {{ course.semester }}
+                    </p>
+
+                    <p>
+                        {{ course.description }}
+                    </p>
+
+                    <a href="{% url 'enroll' course.id %}" class="btn btn-success w-100">
+                        Enroll
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <div class="col-12">
+
+            <div class="alert alert-warning">
+
+                No courses available.
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Assignments
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="mb-4">
+        Assignments - {{ course.course_name }}
+    </h2>
+
+    {% if assignments %}
+
+    <table class="table table-bordered table-hover shadow">
+
+        <thead class="table-dark">
+
+            <tr>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Action</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            {% for assignment in assignments %}
+
+            <tr>
+
+                <td>
+                    {{ assignment.title }}
+                </td>
+
+                <td>
+                    {{ assignment.due_date }}
+                </td>
+
+                <td>
+
+                    <a href="#"
+                       class="btn btn-success btn-sm">
+
+                        View
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+    {% else %}
+
+    <div class="alert alert-warning">
+
+        No assignments available for this course.
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}
