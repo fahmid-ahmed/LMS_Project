@@ -323,3 +323,62 @@ def teacher_dashboard(request):
             "courses": courses
         }
     )
+@login_required
+def teacher_edit_course(request, course_id):
+
+    if not request.user.is_staff:
+        messages.error(
+            request,
+            "You do not have permission to access the teacher panel."
+        )
+        return redirect("dashboard")
+
+    course = Course.objects.get(
+        id=course_id,
+        instructor=request.user.username
+    )
+
+    if request.method == "POST":
+
+        course_code = request.POST.get("course_code")
+        course_name = request.POST.get("course_name")
+        credit = request.POST.get("credit")
+        semester = request.POST.get("semester")
+        description = request.POST.get("description")
+
+        if Course.objects.filter(
+            course_code=course_code
+        ).exclude(id=course.id).exists():
+
+            messages.error(
+                request,
+                "Course code already exists!"
+            )
+
+            return redirect(
+                "teacher_edit_course",
+                course_id=course.id
+            )
+
+        course.course_code = course_code
+        course.course_name = course_name
+        course.credit = credit
+        course.semester = semester
+        course.description = description
+
+        course.save()
+
+        messages.success(
+            request,
+            "Course updated successfully!"
+        )
+
+        return redirect("teacher_dashboard")
+
+    return render(
+        request,
+        "teacher_edit_course.html",
+        {
+            "course": course
+        }
+    )
