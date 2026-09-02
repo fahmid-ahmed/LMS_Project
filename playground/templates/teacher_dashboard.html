@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Teacher Dashboard
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <!-- ============================= -->
+    <!-- Teacher Welcome Section -->
+    <!-- ============================= -->
+
+    <div class="p-5 mb-4 bg-primary text-white rounded shadow">
+
+        <h1>
+            Welcome, {{ user.first_name }}
+        </h1>
+
+        <p class="lead">
+            Teacher Dashboard
+        </p>
+
+        <p>
+            Manage your courses, learning materials and assignments.
+        </p>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- Teacher Options -->
+    <!-- ============================= -->
+
+    <div class="row">
+
+        <!-- Courses -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>📚</h2>
+
+                    <h5>My Courses</h5>
+
+                    <p>
+                        View and manage courses.
+                    </p>
+
+                    <a href="{% url 'teacher_dashboard' %}"
+                       class="btn btn-primary">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Assignments -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>📝</h2>
+
+                    <h5>Assignments</h5>
+
+                    <p>
+                        Create and manage assignments.
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-warning">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Submissions -->
+
+        <div class="col-md-4 mb-4">
+
+            <div class="card shadow h-100">
+
+                <div class="card-body text-center">
+
+                    <h2>📥</h2>
+
+                    <h5>Student Submissions</h5>
+
+                    <p>
+                        View student assignment submissions.
+                    </p>
+
+                    <a href="#"
+                       class="btn btn-success">
+
+                        Open
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- Course List -->
+    <!-- ============================= -->
+
+    <div class="card shadow mt-4">
+
+        <div class="card-header bg-dark text-white">
+
+            <h4 class="mb-0">
+                📚 Available Courses
+            </h4>
+
+        </div>
+
+        <div class="card-body">
+
+            {% if courses %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover">
+
+                        <thead class="table-light">
+
+                            <tr>
+
+                                <th>Course Code</th>
+
+                                <th>Course Name</th>
+
+                                <th>Instructor</th>
+
+                                <th>Semester</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for course in courses %}
+
+                            <tr>
+
+                                <td>
+                                    {{ course.course_code }}
+                                </td>
+
+                                <td>
+                                    {{ course.course_name }}
+                                </td>
+
+                                <td>
+                                    {{ course.instructor }}
+                                </td>
+
+                                <td>
+                                    {{ course.semester }}
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            {% else %}
+
+                <div class="alert alert-warning">
+
+                    No courses available.
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
