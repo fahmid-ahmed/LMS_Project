@@ -172,6 +172,37 @@ class Assignment(models.Model):
 # Assignment Submission
 # ==========================================
 
+class Submission(models.Model):
+
+    # Student who submitted
+    student = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+
+    # Assignment
+    assignment = models.ForeignKey(
+        Assignment,
+        on_delete=models.CASCADE
+    )
+
+    # Uploaded file
+    submission_file = models.FileField(
+        upload_to="submissions/"
+    )
+
+    # Submission date
+    submitted_at = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    def __str__(self):
+        return f"{self.student.username} - {self.assignment.title}"
+
+# ==========================================
+# Assignment Submission
+# ==========================================
+
 class AssignmentSubmission(models.Model):
 
     assignment = models.ForeignKey(
