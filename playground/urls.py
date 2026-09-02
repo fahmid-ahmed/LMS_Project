@@ -51,6 +51,12 @@ urlpatterns = [
         name='assignments'
     ),
 
+path(
+    "teacher/add-course/",
+    views.teacher_add_course,
+    name="teacher_add_course"
+),
+
 ]
 
 if settings.DEBUG:
